@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:skripsi1/view/kasus_view.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
@@ -100,7 +102,15 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  itemDashboard(String title, IconData iconData, Color background) => Container(
+  itemDashboard(String title, IconData iconData, Color background) {
+    return GestureDetector(
+      onTap: () {
+        if (title == "Kasus") {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const KasusView()));
+        }
+      },
+      child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -126,5 +136,7 @@ class _MyHomePageState extends State<HomePage> {
                 style: Theme.of(context).textTheme.titleMedium)
           ],
         ),
-      );
+      ),
+    );
+  }
 }
