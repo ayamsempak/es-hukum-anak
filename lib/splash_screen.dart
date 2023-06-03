@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:skripsi1/home.dart';
-import 'package:skripsi1/splashscreen.dart';
 
-class splashscreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _splashscreenstate createState() => _splashscreenstate();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _splashscreenstate extends State<splashscreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 4), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
     });
   }
 
@@ -31,7 +32,7 @@ class _splashscreenstate extends State<splashscreen> {
               height: 200,
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'Hukum Perlindungan Anak',
                 style: TextStyle(
