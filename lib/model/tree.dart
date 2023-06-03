@@ -1,5 +1,5 @@
-import './pasal.dart';
-import './node.dart';
+import 'pasal.dart';
+import 'node.dart';
 
 class Tree {
   Node? root;

@@ -1,4 +1,4 @@
-import './pasal.dart';
+import 'pasal.dart';
 
 // Kelas Node
 class Node {
