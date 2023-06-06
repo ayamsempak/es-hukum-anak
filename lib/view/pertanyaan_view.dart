@@ -19,7 +19,13 @@ class _PertanyaanViewState extends State<PertanyaanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.kasus.name),
+        title: Text(
+          widget.kasus.name,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: widget.kasus.listPertanyaan.length,
@@ -35,17 +41,17 @@ class _PertanyaanViewState extends State<PertanyaanView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Pertanyaan ke-${index + 1}',
+                  'Pertanyaan ${index + 1}',
                   style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
                 ),
+                const SizedBox(height: 5),
                 Text(
                   widget.kasus.listPertanyaan[index],
                   textAlign: TextAlign.justify,
                   style: const TextStyle(
-                    fontWeight: FontWeight.normal,
                     fontSize: 16,
                   ),
                 ),

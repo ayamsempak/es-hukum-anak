@@ -91,7 +91,8 @@ class _MyHomePageState extends State<HomePage> {
                   itemDashboard('Kasus', CupertinoIcons.hammer, Colors.green),
                   itemDashboard(
                       'Undang - Undang', CupertinoIcons.book, Colors.purple),
-                  itemDashboard('Contact us', CupertinoIcons.phone, Colors.red),
+                  itemDashboard(
+                      'Hubungi Kami', CupertinoIcons.phone, Colors.red),
                 ],
               ),
             ),
