@@ -15,6 +15,20 @@ class PertanyaanView extends StatefulWidget {
 }
 
 class _PertanyaanViewState extends State<PertanyaanView> {
+  List<bool?> _jawaban = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _jawaban = List<bool?>.filled(widget.kasus.listPertanyaan.length, null);
+  }
+
+  void handleJawabanOnChange(bool? value, int index) {
+    setState(() {
+      _jawaban[index] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +69,32 @@ class _PertanyaanViewState extends State<PertanyaanView> {
                     fontSize: 16,
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Radio<bool>(
+                      value: true,
+                      groupValue: _jawaban[index],
+                      onChanged: (value) {
+                        handleJawabanOnChange(value, index);
+                      },
+                    ),
+                    const Text('Ya'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Radio<bool>(
+                      value: false,
+                      groupValue: _jawaban[index],
+                      onChanged: (value) {
+                        handleJawabanOnChange(value, index);
+                      },
+                    ),
+                    const Text('Tidak'),
+                  ],
+                )
               ],
             ),
           );
