@@ -1,12 +1,10 @@
 import 'package:skripsi1/model/kasus.dart';
 
 List<Kasus> loadKasus() {
-  // Belum rules
   Kasus kasusDiskriminasi = loadKasusEksploitasi();
   Kasus kasusEksploitasi = loadKasusEksploitasi();
   Kasus kasusPengangkatanAnak = loadKasusPengangkatanAnak();
   Kasus kasusPenganiayaan = loadKasusPenganiayaan();
-
   Kasus kasusPenculikan = loadKasusPenculikan();
   Kasus kasusPemilihanAgama = loadKasusPemilihanAgama();
 
@@ -34,6 +32,26 @@ Kasus loadKasusDiskriminasi() {
     ],
   );
 
+  for (int i = 0; i < 32; i++) {
+    List<bool> combination = [];
+    for (int j = 0; j < 5; j++) {
+      combination.add(((i >> j) & 1) == 1);
+    }
+
+    if (kasusDiskriminasi
+        .isEqual(combination, [false, false, false, false, false])) {
+      kasusDiskriminasi.addRules({
+        "condition": combination,
+        "tags": [],
+      });
+    } else {
+      kasusDiskriminasi.addRules({
+        "condition": combination,
+        "tags": ['diskriminasi'],
+      });
+    }
+  }
+
   return kasusDiskriminasi;
 }
 
@@ -49,42 +67,42 @@ Kasus loadKasusEksploitasi() {
 
   kasusEksploitasi.addRules({
     "condition": [true, true, true],
-    "tags": [],
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [true, true, false],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [true, false, true],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [true, false, false],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [false, true, true],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [false, true, false],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [false, false, true],
-    "tags": []
+    "tags": ['eksploitasi'],
   });
 
   kasusEksploitasi.addRules({
     "condition": [false, false, false],
-    "tags": []
+    "tags": [],
   });
 
   return kasusEksploitasi;
@@ -102,42 +120,42 @@ Kasus loadKasusPengangkatanAnak() {
 
   kasusPengangkatanAnak.addRules({
     "condition": [true, true, true],
-    "tags": [],
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [true, true, false],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [true, false, true],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [true, false, false],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [false, true, true],
-    "tags": []
+    "tags": [],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [false, true, false],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [false, false, true],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   kasusPengangkatanAnak.addRules({
     "condition": [false, false, false],
-    "tags": []
+    "tags": ['pengangkatan anak'],
   });
 
   return kasusPengangkatanAnak;
@@ -155,42 +173,42 @@ Kasus loadKasusPenganiayaan() {
 
   kasusPenganiayaan.addRules({
     "condition": [true, true, true],
-    "tags": [],
+    "tags": ['cabul', 'persetubuhan'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [true, true, false],
-    "tags": []
+    "tags": ['cabul'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [true, false, true],
-    "tags": []
+    "tags": ['persetubuhan'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [true, false, false],
-    "tags": []
+    "tags": ['penganiayaan'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [false, true, true],
-    "tags": []
+    "tags": ['cabul', 'persetubuhan'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [false, true, false],
-    "tags": []
+    "tags": ['cabul'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [false, false, true],
-    "tags": []
+    "tags": ['persetubuhan'],
   });
 
   kasusPenganiayaan.addRules({
     "condition": [false, false, false],
-    "tags": []
+    "tags": [],
   });
 
   return kasusPenganiayaan;

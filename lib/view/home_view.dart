@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'view/kasus_view.dart';
+import 'kasus_view.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
