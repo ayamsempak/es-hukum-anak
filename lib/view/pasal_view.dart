@@ -2,7 +2,9 @@ import "package:flutter/material.dart";
 import 'dart:collection';
 
 import '../model/node.dart';
+import '../model/pasal.dart';
 import '../model/tree.dart';
+import '../enum/list_pasal.dart';
 
 class PasalView extends StatefulWidget {
   const PasalView({super.key});
@@ -20,7 +22,12 @@ class _PasalViewState extends State<PasalView> {
   void initState() {
     super.initState();
     // Membuat objek Tree dan memasukkan seluruh isi listPasal ke dalam Tree
+    List<Pasal> lp = listPasal;
+    for (var pasal in lp) {
+      tree.insertNode(pasal);
+    }
 
+    // Temukan melanggar pasal
     melanggarPasal = findMelanggarPasal(tree, targetTags);
   }
 
