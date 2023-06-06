@@ -1,6 +1,28 @@
 import 'package:skripsi1/model/kasus.dart';
 
 List<Kasus> loadKasus() {
+  // Belum rules
+  Kasus kasusDiskriminasi = loadKasusEksploitasi();
+  Kasus kasusEksploitasi = loadKasusEksploitasi();
+  Kasus kasusPengangkatanAnak = loadKasusPengangkatanAnak();
+  Kasus kasusPenganiayaan = loadKasusPenganiayaan();
+
+  Kasus kasusPenculikan = loadKasusPenculikan();
+  Kasus kasusPemilihanAgama = loadKasusPemilihanAgama();
+
+  List<Kasus> listKasus = [
+    kasusDiskriminasi,
+    kasusEksploitasi,
+    kasusPengangkatanAnak,
+    kasusPenganiayaan,
+    kasusPenculikan,
+    kasusPemilihanAgama
+  ];
+
+  return listKasus;
+}
+
+Kasus loadKasusDiskriminasi() {
   Kasus kasusDiskriminasi = Kasus(
     "Diskriminasi dan Penelantaran Anak",
     [
@@ -12,6 +34,10 @@ List<Kasus> loadKasus() {
     ],
   );
 
+  return kasusDiskriminasi;
+}
+
+Kasus loadKasusEksploitasi() {
   Kasus kasusEksploitasi = Kasus(
     "Eksploitasi",
     [
@@ -21,6 +47,50 @@ List<Kasus> loadKasus() {
     ],
   );
 
+  kasusEksploitasi.addRules({
+    "condition": [true, true, true],
+    "tags": [],
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [true, true, false],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [true, false, true],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [true, false, false],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [false, true, true],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [false, true, false],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [false, false, true],
+    "tags": []
+  });
+
+  kasusEksploitasi.addRules({
+    "condition": [false, false, false],
+    "tags": []
+  });
+
+  return kasusEksploitasi;
+}
+
+Kasus loadKasusPengangkatanAnak() {
   Kasus kasusPengangkatanAnak = Kasus(
     "Pengangkatan Anak",
     [
@@ -30,6 +100,50 @@ List<Kasus> loadKasus() {
     ],
   );
 
+  kasusPengangkatanAnak.addRules({
+    "condition": [true, true, true],
+    "tags": [],
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [true, true, false],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [true, false, true],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [true, false, false],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [false, true, true],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [false, true, false],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [false, false, true],
+    "tags": []
+  });
+
+  kasusPengangkatanAnak.addRules({
+    "condition": [false, false, false],
+    "tags": []
+  });
+
+  return kasusPengangkatanAnak;
+}
+
+Kasus loadKasusPenganiayaan() {
   Kasus kasusPenganiayaan = Kasus(
     "Penganiayaan dan Kekerasan Seks",
     [
@@ -39,6 +153,50 @@ List<Kasus> loadKasus() {
     ],
   );
 
+  kasusPenganiayaan.addRules({
+    "condition": [true, true, true],
+    "tags": [],
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [true, true, false],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [true, false, true],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [true, false, false],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [false, true, true],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [false, true, false],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [false, false, true],
+    "tags": []
+  });
+
+  kasusPenganiayaan.addRules({
+    "condition": [false, false, false],
+    "tags": []
+  });
+
+  return kasusPenganiayaan;
+}
+
+Kasus loadKasusPenculikan() {
   Kasus kasusPenculikan = Kasus(
     "Penculikan dan Transplantasi Organ",
     [
@@ -48,15 +206,60 @@ List<Kasus> loadKasus() {
     ],
   );
 
-  Kasus kasusPemilihan = Kasus(
-    "Pemilihan Agama, Pemaksaan dan Nsarkotika",
+  kasusPenculikan.addRules({
+    "condition": [true, true, true],
+    "tags": ['penculikan', 'transplantasi organ', 'jual beli organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [true, true, false],
+    "tags": ['penculikan', 'transplantasi organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [true, false, true],
+    "tags": ['penculikan', 'jual beli organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [true, false, false],
+    "tags": ['penculikan'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [false, true, true],
+    "tags": ['transplantasi organ', 'jual beli organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [false, true, false],
+    "tags": ['transplantasi organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [false, false, true],
+    "tags": ['jual beli organ'],
+  });
+
+  kasusPenculikan.addRules({
+    "condition": [false, false, false],
+    "tags": [],
+  });
+
+  return kasusPenculikan;
+}
+
+Kasus loadKasusPemilihanAgama() {
+  Kasus kasusPemilihanAgama = Kasus(
+    "PemilihanAgama Agama, Pemaksaan dan Nsarkotika",
     [
       "Apakah pelaku melakukan tipu muslihat, kebohongan atau membujuk anak untuk memilih agama lain bukan atas kemauannya sendiri?",
       "Apakah pelaku memperalat anak untuk kepentingan militer / memaksa anak terlibat dalam kerusuhan social atau peristiwa yang mengandung unsur kekerasan?",
       "Apakah pelaku dengan sengaja melibatkan anak dalam penyalahgunaan produksi/distribusi narkotika ataupun alkohol?",
     ],
   );
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [true, true, true],
     "tags": [
       'pemilihan agama',
@@ -64,77 +267,41 @@ List<Kasus> loadKasus() {
       'penyalahgunaan zat terlarang'
     ],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [true, true, false],
-    "tags": []
+    "tags": ['pemilihan agama', 'memperalat anak'],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [true, false, true],
-    "tags": []
+    "tags": ['pemilihan agama', 'penyalahgunaan zat terlarang'],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [true, false, false],
-    "tags": []
+    "tags": ['pemilihan agama'],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [false, true, true],
-    "tags": []
+    "tags": ['memperalat anak', 'penyalahgunaan zat terlarang'],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [false, true, false],
-    "tags": []
+    "tags": ['memperalat anak']
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [false, false, true],
-    "tags": []
+    "tags": ['penyalahgunaan zat terlarang'],
   });
-  kasusPemilihan.addRules({
+
+  kasusPemilihanAgama.addRules({
     "condition": [false, false, false],
-    "tags": []
+    "tags": [],
   });
 
-  List<Kasus> listKasus = [
-    kasusDiskriminasi,
-    kasusEksploitasi,
-    kasusPengangkatanAnak,
-    kasusPenganiayaan,
-    kasusPenculikan,
-    kasusPemilihan
-  ];
-
-  return listKasus;
+  return kasusPemilihanAgama;
 }
-
-// kasusPemilihan.addRules({
-//   "condition": [true, true, true],
-//   "tags": [],
-// });
-// kasusPemilihan.addRules({
-//   "condition": [true, true, false],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [true, false, true],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [true, false, false],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [false, true, true],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [false, true, false],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [false, false, true],
-//   "tags": []
-// });
-// kasusPemilihan.addRules({
-//   "condition": [false, false, false],
-//   "tags": []
-// });
-
