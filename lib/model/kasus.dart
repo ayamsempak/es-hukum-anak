@@ -1,9 +1,9 @@
 class Kasus {
   String name = "";
   List<String> listPertanyaan = [];
+  List<Map<String, dynamic>> rules = [];
 
   late List<bool> listJawaban;
-  late List<Map<String, dynamic>> rules;
 
   Kasus(this.name, this.listPertanyaan) {
     listJawaban = List<bool>.filled(listPertanyaan.length, false);

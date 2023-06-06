@@ -106,8 +106,12 @@ class _MyHomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: () {
         if (title == "Kasus") {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const KasusView()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const KasusView(),
+            ),
+          );
         }
       },
       child: Container(

@@ -1,7 +1,7 @@
 import 'package:skripsi1/model/kasus.dart';
 
 List<Kasus> loadKasus() {
-  Kasus kasusDiskriminasi = loadKasusEksploitasi();
+  Kasus kasusDiskriminasi = loadKasusDiskriminasi();
   Kasus kasusEksploitasi = loadKasusEksploitasi();
   Kasus kasusPengangkatanAnak = loadKasusPengangkatanAnak();
   Kasus kasusPenganiayaan = loadKasusPenganiayaan();
@@ -269,7 +269,7 @@ Kasus loadKasusPenculikan() {
 
 Kasus loadKasusPemilihanAgama() {
   Kasus kasusPemilihanAgama = Kasus(
-    "PemilihanAgama Agama, Pemaksaan dan Nsarkotika",
+    "Pemilihan Agama, Pemaksaan dan Narkotika",
     [
       "Apakah pelaku melakukan tipu muslihat, kebohongan atau membujuk anak untuk memilih agama lain bukan atas kemauannya sendiri?",
       "Apakah pelaku memperalat anak untuk kepentingan militer / memaksa anak terlibat dalam kerusuhan social atau peristiwa yang mengandung unsur kekerasan?",

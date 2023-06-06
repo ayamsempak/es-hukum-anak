@@ -1,20 +1,18 @@
 import "package:flutter/material.dart";
+import "package:skripsi1/enum/list_kasus.dart";
+import "package:skripsi1/model/kasus.dart";
+import "package:skripsi1/view/pertanyaan_view.dart";
 
 class KasusView extends StatelessWidget {
   const KasusView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<String> lisPelanggaran = [
-      "A",
-      "B",
-      "C",
-      "D",
-    ];
+    List<Kasus> listKasus = loadKasus();
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         title: const Text('Kasus Pelanggaran Terhadap Anak'),
       ),
       body: Column(
@@ -33,21 +31,33 @@ class KasusView extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: lisPelanggaran.length,
+                itemCount: listKasus.length,
                 padding: const EdgeInsets.all(10.0),
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 5,
-                            color: Color.fromARGB(255, 240, 240, 240)),
-                        borderRadius: BorderRadius.circular(10),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PertanyaanView(
+                              kasus: listKasus[index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 5,
+                              color: Color.fromARGB(255, 240, 240, 240)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        horizontalTitleGap: 10.0,
+                        trailing: const Icon(Icons.arrow_right),
+                        title: Text(listKasus[index].name),
                       ),
-                      horizontalTitleGap: 10.0,
-                      trailing: const Icon(Icons.arrow_right),
-                      title: Text(lisPelanggaran[index]),
                     ),
                   );
                 }),
