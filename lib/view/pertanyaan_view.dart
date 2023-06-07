@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pasal_view.dart';
 
 import '../model/kasus.dart';
 
@@ -27,6 +28,32 @@ class _PertanyaanViewState extends State<PertanyaanView> {
     setState(() {
       _jawaban[index] = value;
     });
+    // debugPrint(_jawaban.toString());
+  }
+
+  void onPressSubmit() {
+    List<bool> listJawaban = [];
+    for (int i = 0; i < _jawaban.length; i++) {
+      if (_jawaban[i] == null || _jawaban[i] == false) {
+        listJawaban.add(false);
+      } else {
+        listJawaban.add(true);
+      }
+    }
+
+    List<dynamic> forwardChaining = widget.kasus.getTags(listJawaban);
+    List<String> targetTags =
+        forwardChaining.map((item) => item.toString()).toList();
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        settings: const RouteSettings(name: "/pasal"),
+        builder: (context) => PasalView(
+          targetTags: targetTags,
+        ),
+      ),
+    );
   }
 
   @override
@@ -41,64 +68,81 @@ class _PertanyaanViewState extends State<PertanyaanView> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: widget.kasus.listPertanyaan.length,
+      body: Padding(
         padding: const EdgeInsets.all(10.0),
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.only(
-              bottom: 10.0,
-              left: 10.0,
-              right: 10.0,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            ...buildPertanyaanListWidget(),
+            ElevatedButton(
+              onPressed: onPressSubmit,
+              child: const Text('Selesai'),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Pertanyaan ${index + 1}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  widget.kasus.listPertanyaan[index],
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Radio<bool>(
-                      value: true,
-                      groupValue: _jawaban[index],
-                      onChanged: (value) {
-                        handleJawabanOnChange(value, index);
-                      },
-                    ),
-                    const Text('Ya'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Radio<bool>(
-                      value: false,
-                      groupValue: _jawaban[index],
-                      onChanged: (value) {
-                        handleJawabanOnChange(value, index);
-                      },
-                    ),
-                    const Text('Tidak'),
-                  ],
-                )
-              ],
+          ]),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> buildPertanyaanListWidget() {
+    List<Widget> listWidget = [];
+    for (int i = 0; i < widget.kasus.listPertanyaan.length; i++) {
+      listWidget.add(buildPertanyaanWidget(i));
+    }
+    return listWidget;
+  }
+
+  Widget buildPertanyaanWidget(int index) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 10.0,
+        left: 10.0,
+        right: 10.0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Pertanyaan ${index + 1}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
-          );
-        },
+          ),
+          const SizedBox(height: 5),
+          Text(
+            widget.kasus.listPertanyaan[index],
+            textAlign: TextAlign.justify,
+            style: const TextStyle(
+              fontSize: 16,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Radio<bool>(
+                value: true,
+                groupValue: _jawaban[index],
+                onChanged: (value) {
+                  handleJawabanOnChange(value, index);
+                },
+              ),
+              const Text('Ya'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Radio<bool>(
+                value: false,
+                groupValue: _jawaban[index],
+                onChanged: (value) {
+                  handleJawabanOnChange(value, index);
+                },
+              ),
+              const Text('Tidak'),
+            ],
+          )
+        ],
       ),
     );
   }

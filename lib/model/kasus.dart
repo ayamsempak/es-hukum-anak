@@ -3,19 +3,15 @@ class Kasus {
   List<String> listPertanyaan = [];
   List<Map<String, dynamic>> rules = [];
 
-  late List<bool> listJawaban;
-
-  Kasus(this.name, this.listPertanyaan) {
-    listJawaban = List<bool>.filled(listPertanyaan.length, false);
-  }
+  Kasus({required this.name, required this.listPertanyaan});
 
   void addRules(Map<String, dynamic> rule) {
     rules.add(rule);
   }
 
-  List<String> getTags() {
+  List<dynamic> getTags(List<bool> listJawaban) {
     for (int i = 0; i < rules.length; i++) {
-      if (isEqual(rules[i]["conditions"], listJawaban)) {
+      if (isEqual(rules[i]["condition"], listJawaban)) {
         return rules[i]["tags"];
       }
     }

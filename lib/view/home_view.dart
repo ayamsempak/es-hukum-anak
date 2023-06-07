@@ -110,6 +110,7 @@ class _MyHomePageState extends State<HomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
+              settings: const RouteSettings(name: "/kasus"),
               builder: (context) => const KasusView(),
             ),
           );

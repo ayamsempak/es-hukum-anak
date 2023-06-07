@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skripsi1/enum/list_kasus.dart';
-import 'package:skripsi1/model/kasus.dart';
-import 'package:skripsi1/view/pertanyaan_view.dart';
+import '../enum/list_kasus.dart';
+import '../model/kasus.dart';
+import 'pertanyaan_view.dart';
 
 class KasusView extends StatelessWidget {
   const KasusView({Key? key}) : super(key: key);
@@ -41,6 +41,7 @@ class KasusView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          settings: const RouteSettings(name: "/pertanyaan"),
                           builder: (context) => PertanyaanView(
                             kasus: listKasus[index],
                           ),
