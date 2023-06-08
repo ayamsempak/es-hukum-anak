@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skripsi1/view/beranda_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'kasus_view.dart';
-// ignore: duplicate_import
 import 'beranda_view.dart';
-// ignore: unused_import
+import 'kasus_view.dart';
 import 'undangundang_view.dart';
 
 void main() {
@@ -39,6 +37,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  void openWhatsApp() async {
+    final url = Uri.parse('https://wa.me/+6282173154102');
+    // final url = Uri.parse('https://www.google.com');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      debugPrint("gabisa");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +117,7 @@ class _MyHomePageState extends State<HomePage> {
 
   itemDashboard(String title, IconData iconData, Color background) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if (title == "Kasus") {
           Navigator.push(
             context,
@@ -134,6 +142,8 @@ class _MyHomePageState extends State<HomePage> {
               builder: (context) => const UndangundangView(),
             ),
           );
+        } else if (title == "Hubungi Kami") {
+          openWhatsApp();
         }
       },
       child: Container(
