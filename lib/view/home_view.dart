@@ -41,7 +41,7 @@ class _MyHomePageState extends State<HomePage> {
     final url = Uri.parse('https://wa.me/+6282173154102');
     // final url = Uri.parse('https://www.google.com');
     if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
       debugPrint("gabisa");
     }
