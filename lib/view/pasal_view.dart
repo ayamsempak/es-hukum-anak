@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:collection';
 
 import "package:flutter/material.dart";
@@ -34,7 +36,7 @@ class _PasalViewState extends State<PasalView> {
     }
 
     // Temukan melanggar pasal
-    _melanggarPasal = findMelanggarPasal(tree, _targetTags);
+    _melanggarPasal = DFS(tree, _targetTags);
   }
 
 // Fungsi untuk membandingkan dua buah list string
@@ -55,8 +57,8 @@ class _PasalViewState extends State<PasalView> {
     return true;
   }
 
-// Fungsi untuk mencari melanggarPasal berdasarkan list of tags menggunakan BFS
-  String? findMelanggarPasal(Tree tree, List<String> targetTags) {
+// Fungsi untuk mencari melanggarPasal berdasarkan list of tags menggunakan DFS
+  String? DFS(Tree tree, List<String> targetTags) {
     if (tree.root == null) {
       return null;
     }
@@ -95,7 +97,7 @@ class _PasalViewState extends State<PasalView> {
           children: [
             Text(
               _melanggarPasal != null
-                  ? 'Melanggar Pasal: $_melanggarPasal'
+                  ? 'Bersalah, Terancam Pasal: $_melanggarPasal'
                   : 'Tidak Bersalah',
               style: const TextStyle(fontSize: 24),
             ),

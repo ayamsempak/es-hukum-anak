@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:skripsi1/view/beranda_view.dart';
 
 import 'kasus_view.dart';
+// ignore: duplicate_import
+import 'beranda_view.dart';
+// ignore: unused_import
+import 'undangundang_view.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -89,8 +94,7 @@ class _MyHomePageState extends State<HomePage> {
                   itemDashboard(
                       'Beranda', CupertinoIcons.home, Colors.deepOrange),
                   itemDashboard('Kasus', CupertinoIcons.hammer, Colors.green),
-                  itemDashboard(
-                      'Undang - Undang', CupertinoIcons.book, Colors.purple),
+                  itemDashboard('UU', CupertinoIcons.book, Colors.purple),
                   itemDashboard(
                       'Hubungi Kami', CupertinoIcons.phone, Colors.red),
                 ],
@@ -112,6 +116,22 @@ class _MyHomePageState extends State<HomePage> {
             MaterialPageRoute(
               settings: const RouteSettings(name: "/kasus"),
               builder: (context) => const KasusView(),
+            ),
+          );
+        } else if (title == "Beranda") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              settings: const RouteSettings(name: "/beranda"),
+              builder: (context) => const BerandaView(),
+            ),
+          );
+        } else if (title == "UU") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              settings: const RouteSettings(name: "/UU"),
+              builder: (context) => const UndangundangView(),
             ),
           );
         }
