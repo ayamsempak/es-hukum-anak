@@ -17,11 +17,20 @@ class BerandaView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            Text(
+              'Anak',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.justify,
+            ),
             Text(
               'Anak secara garis besar berarti sesuatu yang lebih kecil, seseorang yang belum dewasa, atau suatu objek yang "dibawahi" oleh objek lain. Namun, arti tersebut mencakup hal-hal yang beragam menurut disiplin ilmiahnya. Dalam bidang biologi, anak umumnya adalah makhluk hidup yang belum mencapai tahap matang atau dewasa.',
               style: TextStyle(
@@ -32,6 +41,15 @@ class BerandaView extends StatelessWidget {
               textAlign: TextAlign.justify,
             ),
             SizedBox(height: 16), // Menambahkan jarak antara paragraf
+            Text(
+              'Perlindungan Anak',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.justify,
+            ),
             Text(
               'Perlindungan anak adalah segala kegiatan untuk menjamin dan melindungi anak dan pemenuhan hak-haknya agar dapat hidup, tumbuh, berkembang, dan berpartisipasi secara optimal sesuai dengan harkat dan martabat kemanusiaan, serta mendapat perlindungan dari tindak kekerasan dan diskriminasi. Perlindungan anak merupakan tanggung jawab bersama dari keluarga, masyarakat, dan negara.',
               style: TextStyle(

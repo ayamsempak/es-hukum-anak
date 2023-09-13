@@ -5,6 +5,7 @@ import 'dart:collection';
 import "package:flutter/material.dart";
 
 import '../enum/list_pasal.dart';
+import '../enum/list_bunyi_pasal.dart';
 import '../model/node.dart';
 import '../model/pasal.dart';
 import '../model/tree.dart';
@@ -22,6 +23,7 @@ class _PasalViewState extends State<PasalView> {
   Tree tree = Tree();
   List<String> _targetTags = [];
   String? _melanggarPasal;
+  late List<int> _bunyiPasal;
 
   @override
   void initState() {
@@ -36,7 +38,12 @@ class _PasalViewState extends State<PasalView> {
     }
 
     // Temukan melanggar pasal
-    _melanggarPasal = DFS(tree, _targetTags);
+    var result = DFS(tree, _targetTags);
+    if (result.isNotEmpty) {
+      _melanggarPasal = result[0];
+      _bunyiPasal = result[1];
+    }
+    // _melanggarPasal = DFS(tree, _targetTags);
   }
 
 // Fungsi untuk membandingkan dua buah list string
@@ -58,9 +65,9 @@ class _PasalViewState extends State<PasalView> {
   }
 
 // Fungsi untuk mencari melanggarPasal berdasarkan list of tags menggunakan DFS
-  String? DFS(Tree tree, List<String> targetTags) {
+  List DFS(Tree tree, List<String> targetTags) {
     if (tree.root == null) {
-      return null;
+      return [];
     }
 
     Queue<Node> queue = Queue();
@@ -70,7 +77,7 @@ class _PasalViewState extends State<PasalView> {
       Node currentNode = queue.removeFirst();
 
       if (compareStringLists(currentNode.pasal.tags, targetTags)) {
-        return currentNode.pasal.melanggarPasal;
+        return [currentNode.pasal.melanggarPasal, currentNode.pasal.bunyiPasal];
       }
 
       if (currentNode.left != null) {
@@ -81,7 +88,7 @@ class _PasalViewState extends State<PasalView> {
       }
     }
 
-    return null;
+    return [];
   }
 
   @override
@@ -93,25 +100,42 @@ class _PasalViewState extends State<PasalView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Text(
-              _melanggarPasal != null
-                  ? 'Bersalah, Terancam Pasal: $_melanggarPasal'
-                  : 'Tidak Bersalah',
-              style: const TextStyle(fontSize: 24),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).popUntil(
-                  ModalRoute.withName("/home"),
-                );
-              },
-              child: const Text('Kembali'),
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                _melanggarPasal != null
+                    ? 'Bersalah, Terancam Pasal: $_melanggarPasal'
+                    : 'Tidak Bersalah',
+                style: const TextStyle(fontSize: 24),
+              ),
+              ...bunyiPasalWidgets(_bunyiPasal),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).popUntil(
+                    ModalRoute.withName("/home"),
+                  );
+                },
+                child: const Text('Kembali'),
+              )
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  List<Widget> bunyiPasalWidgets(List<int> bp) {
+    List<Widget> bpw = [];
+    for (int i = 0; i < bp.length; i++) {
+      bpw.add(pasal(bp[i], bunyiPasal[bp[i]].toString()));
+    }
+    return bpw;
+  }
+
+  Widget pasal(int pasalNo, String pasalStr) {
+    return Column(
+      children: [Text("Pasal $pasalNo"), Text(pasalStr)],
     );
   }
 }

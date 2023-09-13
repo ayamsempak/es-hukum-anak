@@ -38,12 +38,10 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   void openWhatsApp() async {
-    final url = Uri.parse('https://wa.me/+6282173154102');
+    final url = Uri.parse('https://wa.me/+6282276323641');
     // final url = Uri.parse('https://www.google.com');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      debugPrint("gabisa");
     }
   }
 
@@ -100,7 +98,7 @@ class _MyHomePageState extends State<HomePage> {
                 mainAxisSpacing: 80,
                 children: [
                   itemDashboard(
-                      'Beranda', CupertinoIcons.home, Colors.deepOrange),
+                      'Informasi', CupertinoIcons.home, Colors.deepOrange),
                   itemDashboard('Kasus', CupertinoIcons.hammer, Colors.green),
                   itemDashboard('UU', CupertinoIcons.book, Colors.purple),
                   itemDashboard(
@@ -126,11 +124,11 @@ class _MyHomePageState extends State<HomePage> {
               builder: (context) => const KasusView(),
             ),
           );
-        } else if (title == "Beranda") {
+        } else if (title == "Informasi") {
           Navigator.push(
             context,
             MaterialPageRoute(
-              settings: const RouteSettings(name: "/beranda"),
+              settings: const RouteSettings(name: "/informasi"),
               builder: (context) => const BerandaView(),
             ),
           );
