@@ -39,6 +39,8 @@ class _PasalViewState extends State<PasalView> {
 
     // Temukan melanggar pasal
     var result = DFS(tree, _targetTags);
+    _bunyiPasal = [];
+
     if (result.isNotEmpty) {
       _melanggarPasal = result[0];
       _bunyiPasal = result[1];
