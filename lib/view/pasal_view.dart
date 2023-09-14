@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:collection';
 
@@ -103,12 +103,7 @@ class _PasalViewState extends State<PasalView> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                _melanggarPasal != null
-                    ? 'Bersalah, Terancam Pasal: $_melanggarPasal'
-                    : 'Tidak Bersalah',
-                style: const TextStyle(fontSize: 24),
-              ),
+              pernyataanWidget(_melanggarPasal),
               ...bunyiPasalWidgets(_bunyiPasal),
               ElevatedButton(
                 onPressed: () {
@@ -125,6 +120,121 @@ class _PasalViewState extends State<PasalView> {
     );
   }
 
+  Widget pernyataanWidget(String? melanggarPasal) {
+    if (melanggarPasal != null) {
+      return Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 32,
+                child: Text(
+                  "Kondisi",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  ":",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                flex: 65,
+                child: Text(
+                  "Bersalah",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 32,
+                child: Text(
+                  "Melanggar Pasal",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  ":",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                flex: 65,
+                child: Text(
+                  melanggarPasal,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.all(5))
+        ],
+      );
+    }
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              flex: 32,
+              child: Text(
+                "Kondisi",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text(
+                ":",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Expanded(
+              flex: 65,
+              child: Text(
+                "Tidak Bersalah",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              flex: 32,
+              child: Text(
+                "Melanggar Pasal",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text(
+                ":",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Expanded(
+              flex: 65,
+              child: Text(
+                "-",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(5))
+      ],
+    );
+  }
+
   List<Widget> bunyiPasalWidgets(List<int> bp) {
     List<Widget> bpw = [];
     for (int i = 0; i < bp.length; i++) {
@@ -135,7 +245,20 @@ class _PasalViewState extends State<PasalView> {
 
   Widget pasal(int pasalNo, String pasalStr) {
     return Column(
-      children: [Text("Pasal $pasalNo"), Text(pasalStr)],
+      children: [
+        Text(
+          "Pasal $pasalNo",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          pasalStr,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 16),
+        ),
+      ],
     );
   }
 }
